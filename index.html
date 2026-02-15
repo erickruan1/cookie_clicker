@@ -3,37 +3,41 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cookie clicker</title>
+        <title>Cookie Clicker!</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="container">
             <div class="left">
-                <div class="name"></div>
-                <div class="couter">
-                    <p id="cookie-counter">0 Cookies</p>
-                    <p id="cookies-p-s">0 Cookies p/s</p>
+                <div class="metrics">
+                    <div class="name">
+                        <p id="name">Padaria de Nome Completo Aqui?</p>
+                    </div>
+                    <p id="cookies">0 Cookies</p>
+                    <p id="cookiesPs">0 Cookies/PS</p>
                 </div>
-
-                <div class="clicker">
-                    <img
-                        src="src/assets/cookie.png"
-                        alt=""
-                        style="width: 200px"
-                    />
-                </div>
-            </div>
-            <div class="middle">
-                <button id="save-data">Salvar dados</button>
+                <img id="cookie" src="assets/cookie.png" alt="" />
             </div>
             <div class="right">
+                <button id="configs" onclick="notify(`Recurso indisponivel`, 3)">
+                    <img src="assets/settings.png" alt="" />
+                </button>
+
                 <div class="shop">
-                    <ul id="shop"></ul>
+                    <ul class="shop-list" id="shop-list"></ul>
                 </div>
             </div>
         </div>
+         <div class="notifications" id="notifications">
+        </div>
+        <div class="save-button">
+            <button id="save-data">
+                Salvar dados
+            </button>
+        </div>
+        <div class="config"></div>
 
-        <script src="src/scripts/script.js" defer></script>
-        <script src="src/scripts/buys.js" defer></script>
+        <script src="src/scripts/data.js"></script>
+        <script src="src/scripts/shop.js"></script>
     </body>
 </html>
