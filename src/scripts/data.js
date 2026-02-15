@@ -37,6 +37,8 @@ cookiesPs.textContent = `${data.cookiesPs || 0} cookies p/s`;
 
 clicker.addEventListener("click", () => {
     data.cookies += 1;
+    document.title = `${data.cookies} Cookies`;
+
     data.clicks += 1;
     cookiesName.textContent = `${data.cookies} cookies`;
 });
@@ -96,3 +98,7 @@ window.addEventListener("beforeunload", () => {
 setInterval(() => {
     saveData();
 }, 60000);
+
+setInterval(() => {
+    document.title = `${data.cookies} Cookies`;
+}, 2500);

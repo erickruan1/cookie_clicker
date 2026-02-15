@@ -5,82 +5,214 @@
 }
 
 body {
+    text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
     background-color: blue;
 }
 
-p {
-    color: black;
+::-webkit-scrollbar-thumb {
+    width: 7px;
+    background-color: rgb(77, 77, 255);
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+
     width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 41, 68);
+}
+
+.left,
+.right {
+    width: 50vw;
     height: 100vh;
 }
 
 .left,
-.middle,
 .right {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-.left {
-    background-color: red;
-}
-
-.middle {
-    background-color: rgb(68, 68, 180);
-    justify-content: start;
-}
-
-#save-data {
-    position: fixed;
-    bottom: 50px;
-    width: 200px;
-    height: 40px;
-    border-radius: 10px;
+    justify-content: space-around;
+    background-color: blue;
 }
 
 .right {
-    background-color: yellow;
+    background-color: rgb(0, 0, 109);
 }
 
-.left img:active {
+.metrics {
+    width: clamp(100px, 20vw, 250px);
+    background-color: rgb(19, 98, 159);
+    border-radius: 10px;
+    line-height: 20px;
+}
+
+.metrics .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+
+    line-height: 90%;
+    background-color: rgb(15, 78, 126);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#cookie {
+    width: clamp(150px, 20vw, 200px);
+    height: clamp(150px, 20vw, 200px);
+}
+
+#cookie:active {
     scale: 1.05;
 }
 
-.notify-container {
-    position: fixed;
-    top: 10px;
-    right: 50%;
-    transform: translateX(50%);
-
+.notifications {
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    height: 180px;
-    overflow-y: hidden;
+    position: fixed;
+    z-index: 10;
 
-    z-index: 9999;
+    overflow: hidden;
+
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20vw;
+    height: 82px;
 }
 
-.notify {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.notification {
+    width: 100%;
+    height: 40px;
+    line-height: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
     background-color: white;
-    width: 200px;
+}
+
+.save-button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.save-button button {
+    width: 20vw;
     height: 40px;
     border-radius: 10px;
-    text-align: center;
-    border: 1px solid black;
+    border: none;
 }
 
-.notify p {
-    color: black;
+.save-button button:hover {
+    scale: 1.05;
+}
+
+.save-button button:active {
+    scale: 0.95;
+}
+
+#delete-data {
+    background-color: rgb(255, 81, 0);
+    color: white;
+}
+
+#configs {
+    position: absolute;
+    z-index: 30;
+
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+#configs img {
+    width: 100%;
+    height: 100%;
+}
+
+#configs:hover {
+    scale: 1.05;
+}
+
+#configs:active {
+    scale: 0.95;
+}
+
+.config {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(103, 141, 255);
+    opacity: 0;
+    pointer-events: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.shop {
+    max-width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    color: white;
+    padding: 10px;
+    background-color: rgb(124, 189, 253);
+    border-radius: 6px;
+}
+
+.shop-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 5px;
+    background-color: blue;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.shop-item .desc {
+    width: 150px;
+    height: 60px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(0, 0, 87);
+}
+
+@media screen and (max-width: 800px) {
+    .shop-item {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .notifications {
+        width: 80vw;
+    }
 }
