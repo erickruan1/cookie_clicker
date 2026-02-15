@@ -130,8 +130,9 @@ function listItems() {
                 cookiesName.textContent = `${data.cookies} cookies`;
                 cookiesPs.textContent = `${data.cookiesPs} cookies p/s`;
 
-                saveData();
                 listItems();
+            } else {
+                notify("Você não tem dinheiro suficiente para comprar isso", 5);
             }
         });
 
