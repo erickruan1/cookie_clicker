@@ -2,11 +2,12 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    transition: all 0.2s ease;
 }
 
 body {
     text-align: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -103,31 +104,33 @@ body {
     background-color: white;
 }
 
-.save-button {
+.data {
     position: fixed;
+    display: flex;
+    gap: 20px;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.save-button button {
-    width: 20vw;
+.data button {
+    color: white;
+    width: 300px;
     height: 40px;
     border-radius: 10px;
     border: none;
 }
 
-.save-button button:hover {
-    scale: 1.05;
+#save-data {
+    background-color: green;
 }
 
-.save-button button:active {
-    scale: 0.95;
+#save-data:active {
+    background-color: rgb(0, 97, 0);
 }
 
 #delete-data {
-    background-color: rgb(255, 81, 0);
-    color: white;
+    background-color: orange;
 }
 
 #configs {
@@ -170,7 +173,7 @@ body {
 
 .shop {
     max-width: 90%;
-    max-height: 70vh;
+    max-height: 50vh;
     overflow-y: auto;
     color: white;
     padding: 10px;
@@ -207,6 +210,11 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+    .shop {
+        max-width: 90%;
+        max-height: 40vh;
+    }
+
     .shop-item {
         width: 100%;
         flex-direction: column;
@@ -214,5 +222,16 @@ body {
 
     .notifications {
         width: 80vw;
+    }
+
+    .data {
+        flex-direction: column;
+        gap: 20px;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .data button {
+        width: 50vw;
     }
 }

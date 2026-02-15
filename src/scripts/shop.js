@@ -75,6 +75,8 @@ let itens = JSON.parse(localStorage.getItem("shop")) || [
     },
 ];
 
+let interval = null;
+
 function calculateCPS() {
     let cps = 0;
     itens.forEach((item) => {
@@ -83,17 +85,12 @@ function calculateCPS() {
 
     data.cookiesPs = cps;
 
-    let interval = null;
+    if (interval) clearInterval(interval);
 
-    if (!interval) {
-        interval = setInterval(() => {
-            data.cookies += cps;
-            cookiesName.textContent = `${data.cookies || 0} cookies`;
-        }, 1000);
-    } else {
-        clearInterval(interval);
-        interval = null;
-    }
+    interval = setInterval(() => {
+        data.cookies += cps;
+        cookiesName.textContent = `${data.cookies} cookies`;
+    }, 1000);
 
     return cps;
 }
@@ -105,7 +102,6 @@ function listItems() {
 
     itens.forEach((item, index) => {
         const price = item.price * (item.quanty + 1);
-
         const list = document.createElement("li");
         list.classList.add("shop-item");
 

@@ -6,7 +6,13 @@ const saveBtn = document.getElementById("save-data");
 const deleteBtn = document.getElementById("delete-data");
 let data = JSON.parse(localStorage.getItem("data"));
 
-saveBtn.addEventListener("click", saveData);
+saveBtn.addEventListener("click", () => {
+    saveBtn.disabled = true;
+    saveData();
+    setTimeout(() => {
+        saveBtn.disabled = false;
+    }, 5000);
+});
 if (!data) {
     data = {
         name: "Padaria sem nome",
@@ -21,13 +27,16 @@ deleteBtn.addEventListener("click", () => {
     clicksDeleteData += 1;
     if (clicksDeleteData < 2) {
         deleteBtn.textContent = `Clique mais ${2 - clicksDeleteData} vez(es)`;
+        deleteBtn.style.backgroundColor = "red";
     } else {
         deleteData();
+        deleteBtn.style.backgroundColor = "orange";
     }
 
     setTimeout(() => {
         clicksDeleteData = 0;
         deleteBtn.textContent = `Apagar dados`;
+        deleteBtn.style.backgroundColor = "orange";
     }, 5000);
 });
 
