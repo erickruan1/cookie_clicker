@@ -3,6 +3,7 @@ const cookiesName = document.getElementById("cookies");
 const cookiesPs = document.getElementById("cookiesPs");
 const clicker = document.getElementById("cookie");
 const saveBtn = document.getElementById("save-data");
+const deleteBtn = document.getElementById("delete-data");
 let data = JSON.parse(localStorage.getItem("data"));
 
 saveBtn.addEventListener("click", saveData);
@@ -14,6 +15,21 @@ if (!data) {
         clicks: 0,
     };
 }
+let clicksDeleteData = 0;
+
+deleteBtn.addEventListener("click", () => {
+    clicksDeleteData += 1;
+    if (clicksDeleteData < 2) {
+        deleteBtn.textContent = `Clique mais ${2 - clicksDeleteData} vez(es)`;
+    } else {
+        deleteData();
+    }
+
+    setTimeout(() => {
+        clicksDeleteData = 0;
+        deleteBtn.textContent = `Apagar dados`;
+    }, 5000);
+});
 
 pName.textContent = `${data.name}`;
 cookiesName.textContent = `${data.cookies || 0} cookies`;
@@ -66,7 +82,16 @@ function saveData() {
     localStorage.setItem("shop", finalData2);
 }
 
-window.addEventListener("beforeunload", saveData);
+function deleteData() {
+    notify("Dados deletados", 3);
+
+    localStorage.clear();
+    window.location.reload();
+}
+
+window.addEventListener("beforeunload", () => {
+    if (clicksDeleteData < 2) saveData;
+});
 
 setInterval(() => {
     saveData();
